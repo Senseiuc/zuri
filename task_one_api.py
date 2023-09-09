@@ -5,7 +5,7 @@ from fastapi import FastAPI
 app = FastAPI()
 
 
-@app.get("/")
+@app.get("/api")
 def read_root(slack_name: str, track: str):
     if not slack_name or not track:
         return {'message': 'enter query slack name and track'}
