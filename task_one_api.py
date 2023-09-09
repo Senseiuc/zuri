@@ -7,6 +7,8 @@ app = FastAPI()
 
 @app.get("/")
 def read_root(slack_name: str, track: str):
+    if not slack_name or not track:
+        return {'message': 'enter query slack name and track'}
     current_datetime = datetime.datetime.utcnow()
     tolerance = datetime.timedelta(seconds=2)
     valid_time_lower = current_datetime - tolerance
@@ -25,7 +27,7 @@ def read_root(slack_name: str, track: str):
       "current_day": datetime.datetime.now().strftime("%A"),
       "utc_time": f_datetime,
       "track": track,
-      "github_file_url": "https://github.com/Senseiuc/zuri/file_name.ext",
+      "github_file_url": "https://github.com/Senseiuc/zuri/task_one_api.py",
       "github_repo_url": "https://github.com/Senseiuc/zuri",
       "status_code": 200
     }
